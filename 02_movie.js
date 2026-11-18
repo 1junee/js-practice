@@ -69,3 +69,10 @@ console.log(id, title, vote_average)
 const fall = details[0]
 const direct = fall.credits.crew.filter((crew) => { return crew.job == 'Director' }).map(crew => crew.name)
 console.log(direct)
+
+
+// first.wish = true
+const wished = { ...first, wish: true }
+console.log(wished.wish)
+
+
