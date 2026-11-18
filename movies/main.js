@@ -1,3 +1,5 @@
+let movies = []
+
 async function load() {
     // requests.get('https://naver.com')
     const res = await fetch(
@@ -7,7 +9,7 @@ async function load() {
     // json()을 붙이면 Promise
     // console.log(res.json())
     // await를 붙임
-    console.log(await res.json())
+    // console.log(await res.json())
 
     // Promise 객체 관련 (비동기)
     // 서버 응답처럼 시간이 걸리는 작업의 완료 결과를 나타내는 객체
@@ -17,10 +19,26 @@ async function load() {
     // fetch는 404·500만으로 reject되지 않으므로 response.ok로 별도 확인
 
     const data = await res.json()
-    console.log(data.total_results, data.results[0])
-
+    // console.log(data.total_results, data.results[0])
+    movies = data.results
+    render()
 }
 
 load()
+
+const cardBox = document.querySelector('#cards')
+
+function render() {
+
+    const result = movies.map(m => `
+        <a>
+            <img src="https://image.tmdb.org/t/p/w200${m.poster_path}">
+            <h3>${m.title}</h3>
+            <p>${m.vote_average}</p>
+        </a>    
+    `).join('')
+
+    cardBox.innerHTML = result
+}
 
 
