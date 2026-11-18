@@ -57,7 +57,7 @@ const top3 = sortedMovies.slice(0, 3)
 
 
 // 구조 분해
-console.log(first)
+// console.log(first)
 const { id, title, vote_average } = first
 // const id = first.id
 // ...
@@ -68,11 +68,24 @@ console.log(id, title, vote_average)
 // 폴2 영화의 감독들
 const fall = details[0]
 const direct = fall.credits.crew.filter((crew) => { return crew.job == 'Director' }).map(crew => crew.name)
-console.log(direct)
+// console.log(direct)
 
 
 // first.wish = true
 const wished = { ...first, wish: true }
-console.log(wished.wish)
+// console.log(wished.wish)
+// console.log(wished)
 
 
+const youtubeKey = details[1].videos.results.find(v => v.type == 'Trailer').key
+console.log(youtubeKey)
+
+// 값이 있는지 없는지 체크?
+const findResult = details[2].videos.results.find(v => v.type == 'Trailer')
+if (findResult) {
+    console.log(findResult.key)
+}
+else {
+    console.log('none')
+}
+console.log(findResult || '없음')
